@@ -30,7 +30,8 @@ function Switch() {
     <div>
       <div style={{
           width: '1100px',
-          margin: 'auto'
+          margin: 'auto',
+          display: 'block'
         }}>
         <div style={{
             width:'300px',

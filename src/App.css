@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+.fa-twitter {
+  color: #007bff;
+}
+
+footer a {
+  color: white;
+}
+
+footer a:hover {
+  color: white;
+}
