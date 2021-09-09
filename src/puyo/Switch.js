@@ -28,8 +28,12 @@ function Switch() {
 
   return (
     <div>
-      <div className="container">
+      <div style={{
+          width: '1100px',
+          margin: 'auto'
+        }}>
         <div style={{
+            width:'300px',
             float: 'left'
           }}>
           <Simulater
@@ -83,6 +87,7 @@ function Switch() {
           <div style={{
               width: '50%',
               float: 'left',
+              paddingRight: '5px'
             }}>
             <Controller
               start={start}
@@ -110,7 +115,7 @@ function Switch() {
           </div>
           <div style={{
               width: '50%',
-              float: 'left',
+              float: 'left'
             }}>
             <Instruction fever={fever}/>
           </div>
