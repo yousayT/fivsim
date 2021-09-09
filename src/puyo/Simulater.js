@@ -1452,7 +1452,7 @@ function Simulater(props) {
             loadTsumo();
             loadDestination();
             drawAll();
-          }, 200);
+          }, 300);
         } else {
           setTimeout(() => {
             init();
@@ -1464,7 +1464,7 @@ function Simulater(props) {
             loadTsumo();
             loadDestination();
             drawAll();
-          }, 200);
+          }, 300);
         }
       } else {
         if(props.fever) {
@@ -1478,12 +1478,12 @@ function Simulater(props) {
               returnPuyo();
               drawAll();
             }
-          }, 200)
+          }, 300)
         } else {
           setTimeout(() => {
             acceptKeyDown = false;
             init();
-          }, 200);
+          }, 300);
         }
       }
     }
