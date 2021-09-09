@@ -1,0 +1,9 @@
+.tdStyle {
+  width: 6.7%;
+  transition: all .15s ease-in-out;
+}
+
+.tdStyle:hover {
+  color: #fff;
+  background-color: #28a745;
+}
