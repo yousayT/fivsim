@@ -1121,8 +1121,6 @@ function Simulater(props) {
       }
       recordField();
       recordScore();
-      console.log(tsumoCount);
-      console.log(scoreRecords[tsumoCount]);
       tsumoCount++;
     }
 
