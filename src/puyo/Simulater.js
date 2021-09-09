@@ -1409,15 +1409,19 @@ function Simulater(props) {
       if(acceptKeyDown){
         if(e.key === 'ArrowLeft') {
           leftKey();
+          e.preventDefault();
         }
         if(e.key === 'ArrowRight') {
           rightKey();
+          e.preventDefault();
         }
         if(e.key === 'ArrowDown') {
           downKey();
+          e.preventDefault();
         }
         if(e.key === 'ArrowUp') {
           upKey();
+          e.preventDefault();
         }
         if(e.key === 'z') {
           zKey();
