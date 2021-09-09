@@ -304,6 +304,13 @@ function Simulater(props) {
     const SCORE_FIELD_Y = 16.5;
     const SCORE_FIELD_WIDTH = 6;
 
+    // 予告ぷよのお邪魔ぷよ数
+    const YOKOKU = [1440, 720, 360, 180, 30, 6, 1];
+
+    // 予告ぷよ表示の座標
+    const YOKOKU_FIELD_X = 1;
+    const YOKOKU_FIELD_Y = 18;
+
     // 現在のツモ
     // x: 軸ぷよのx座標
     // rotStat: 回転の状況（初期位置0から時計回りに0, 1, 2, 3）、でかぷよの時は現在の色のインデックス（0から4まで、赤、緑、青、黄、紫の順）
@@ -383,6 +390,12 @@ function Simulater(props) {
 
     // 得点
     let score = 0;
+
+    // 前回連鎖時までの得点
+    let beforeScore = 0;
+
+    // 得点の記録
+    let scoreRecords = [];
 
     // フィーバーモード中に一度でも消したかどうか
     let checkFeverErase = false;
@@ -946,6 +959,11 @@ function Simulater(props) {
       }
     }
 
+    // スコアの変遷を保存する（setTsumo関数の中で使用）
+    const recordScore = () => {
+      scoreRecords[tsumoCount] = score;
+    }
+
     // ツモを用意する（現在は中辛のみに対応）
     // isRestricted: 初手2手の制約を加えるかどうか
     // seed: ツモ生成時の乱数の種を指定
@@ -1102,6 +1120,9 @@ function Simulater(props) {
         adj++;
       }
       recordField();
+      recordScore();
+      console.log(tsumoCount);
+      console.log(scoreRecords[tsumoCount]);
       tsumoCount++;
     }
 
@@ -1186,6 +1207,24 @@ function Simulater(props) {
       return [erasedPuyoScore, totalBonus];
     }
 
+    // 予告ぷよ計算
+    const calcYokoku = (score) => {
+      let ojama = Math.floor(score / 120);
+      let drawingYokokuCount = 0;
+      let drawingYokoku = [];
+      while(ojama > 0 && drawingYokokuCount < 6) {
+        for(let i = 0; i < 7; i++) {
+          if(ojama >= YOKOKU[i]) {
+            ojama-= YOKOKU[i];
+            drawingYokokuCount++;
+            drawingYokoku.push(i);
+            break;
+          }
+        }
+      }
+      return drawingYokoku;
+    }
+
     // 残るぷよをフィールドに戻す
     const returnPuyo = () => {
       existingPuyo.forEach(existingPuyoBlock => {
@@ -1219,7 +1258,7 @@ function Simulater(props) {
           drawAll();
           rensaCount++;
           let [erasedPuyoScore, totalBonus] = calcScore()
-          context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, (SCORE_FIELD_X + SCORE_FIELD_WIDTH) * PUYO_SIZE, (SCORE_FIELD_Y + 1) * PUYO_SIZE);
+          context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE, 1.5 *  PUYO_SIZE);
           context.textAlign = "center";
           context.fillStyle = '#38D'
           context.fillText(erasedPuyoScore + " × " + totalBonus, (SCORE_FIELD_X + FIELD_COL / 2) * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE);
@@ -1237,10 +1276,14 @@ function Simulater(props) {
             listLinkedPuyo();
             falledPuyo = linkedPuyo;
             drawAll();
-            context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, (SCORE_FIELD_X + SCORE_FIELD_WIDTH) * PUYO_SIZE, (SCORE_FIELD_Y + 1) * PUYO_SIZE);
+            context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE, 2.5 * PUYO_SIZE);
             context.textAlign = "right"
             context.fillStyle = '#38D'
             context.fillText(score, (SCORE_FIELD_X + FIELD_COL) * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE);
+            let drawingYokoku = calcYokoku(score - beforeScore);
+            for(let i = 0; i < drawingYokoku.length; i++) {
+              drawPuyo(i + YOKOKU_FIELD_X, YOKOKU_FIELD_Y, drawingYokoku[i], 32, puyoImage);
+            }
             resolve();
           }, 400);
         });
@@ -1269,6 +1312,9 @@ function Simulater(props) {
         .then(erasing)
         .then(falling)
         .then(check);
+      }
+      if(rensaCount) {
+        beforeScore = score;
       }
       returnPuyo();
     }
@@ -1335,6 +1381,12 @@ function Simulater(props) {
     const upKey = () => {
       if(tsumoCount - 1) {
         backPuyo();
+        context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE, 1.5 * PUYO_SIZE);
+        context.textAlign = "right";
+        context.fillStyle = '#38D';
+        context.fillText(scoreRecords[tsumoCount], (SCORE_FIELD_X + FIELD_COL) * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE);
+        score = scoreRecords[tsumoCount];
+        beforeScore = scoreRecords[tsumoCount];
         listLinkedPuyo();
         checkErase();
         returnPuyo();
@@ -1447,7 +1499,7 @@ function Simulater(props) {
       <canvas
         ref={canvasRef}
         width="300"
-        height="550"
+        height="610"
         style={{
           display: 'block',
           margin: 'auto',
