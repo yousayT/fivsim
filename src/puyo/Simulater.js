@@ -169,17 +169,13 @@ function Simulater(props) {
 
 
 
-  const puyoImage = new Image();
-  puyoImage.src = 'puyo_image_transparent.png';
-
 
   useEffect(() => {
-    puyoImage.onload = () => {
-      const ctx = canvasRef.current.getContext('2d');
-      setContext(ctx);
-    }
+    const ctx = canvasRef.current.getContext('2d');
+    setContext(ctx);
 
   }, [])
+
 
   useEffect(() => {
     // ここの書き方は変更されるかも
@@ -191,6 +187,8 @@ function Simulater(props) {
     // loadTsumo();
     // loadDestination();
     // drawAll();
+    const puyoImage = new Image();
+    puyoImage.src = 'puyo_image_transparent.png';
 
     // 連結ボーナスは「連結ぷよ数 - 4」
     // 色数ボーナス
@@ -421,7 +419,7 @@ function Simulater(props) {
       // drawPuyo(7, FIELD_ROW, 3, 7, puyoImage);
 
       context.clearRect(PUYO_SIZE, 0, PUYO_SIZE * FIELD_COL, PUYO_SIZE * FIELD_ROW);
-      context.clearRect(PUYO_SIZE * 8, 0, PUYO_SIZE * 2, PUYO_SIZE * 9)
+      context.clearRect(PUYO_SIZE * 8, 0, PUYO_SIZE * 2, PUYO_SIZE * 9);
 
       context.fillStyle = 'navy'
       context.fillRect(PUYO_SIZE, PUYO_SIZE * 4, PUYO_SIZE * FIELD_COL, PUYO_SIZE * (FIELD_ROW - TSUMO_FIELD - 1))
@@ -617,7 +615,7 @@ function Simulater(props) {
       }
 
       context.clearRect(PUYO_SIZE, 0, PUYO_SIZE * FIELD_COL, PUYO_SIZE * FIELD_ROW);
-      context.clearRect(PUYO_SIZE * 8, 0, PUYO_SIZE * 2, PUYO_SIZE * 9)
+      context.clearRect(PUYO_SIZE * 8, 0, PUYO_SIZE * 2, PUYO_SIZE * 9);
 
       context.fillStyle = 'navy'
       context.fillRect(PUYO_SIZE, PUYO_SIZE * 4, PUYO_SIZE * FIELD_COL, PUYO_SIZE * (FIELD_ROW - TSUMO_FIELD - 1))
@@ -1431,9 +1429,9 @@ function Simulater(props) {
     }
 
     if(context) {
-      if(props.start) {
-        if(props.fever) {
-          setTimeout(() => {
+      puyoImage.onload = () => {
+        if(props.start) {
+          if(props.fever) {
             if(props.beginning) {
               tsumoPatternCount = props.beginning - 1;
             } else {
@@ -1452,9 +1450,7 @@ function Simulater(props) {
             loadTsumo();
             loadDestination();
             drawAll();
-          }, 300);
-        } else {
-          setTimeout(() => {
+          } else {
             init();
             prepareTsumo(true, props.changeTsumo);
             listLinkedPuyo();
@@ -1464,11 +1460,9 @@ function Simulater(props) {
             loadTsumo();
             loadDestination();
             drawAll();
-          }, 300);
-        }
-      } else {
-        if(props.fever) {
-          setTimeout(() => {
+          }
+        } else {
+          if(props.fever) {
             acceptKeyDown = false;
             init();
             if(Object.keys(props.rensaType).length) {
@@ -1478,12 +1472,10 @@ function Simulater(props) {
               returnPuyo();
               drawAll();
             }
-          }, 300)
-        } else {
-          setTimeout(() => {
+          } else {
             acceptKeyDown = false;
             init();
-          }, 300);
+          }
         }
       }
     }
