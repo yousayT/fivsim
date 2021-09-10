@@ -421,7 +421,7 @@ function Simulater(props) {
       context.clearRect(PUYO_SIZE, 0, PUYO_SIZE * FIELD_COL, PUYO_SIZE * FIELD_ROW);
       context.clearRect(PUYO_SIZE * 8, 0, PUYO_SIZE * 2, PUYO_SIZE * 9);
 
-      context.fillStyle = 'navy'
+      context.fillStyle = '#aaa'
       context.fillRect(PUYO_SIZE, PUYO_SIZE * 4, PUYO_SIZE * FIELD_COL, PUYO_SIZE * (FIELD_ROW - TSUMO_FIELD - 1))
 
       // 窒息地点のマーク
@@ -617,7 +617,7 @@ function Simulater(props) {
       context.clearRect(PUYO_SIZE, 0, PUYO_SIZE * FIELD_COL, PUYO_SIZE * FIELD_ROW);
       context.clearRect(PUYO_SIZE * 8, 0, PUYO_SIZE * 2, PUYO_SIZE * 9);
 
-      context.fillStyle = 'navy'
+      context.fillStyle = '#aaa'
       context.fillRect(PUYO_SIZE, PUYO_SIZE * 4, PUYO_SIZE * FIELD_COL, PUYO_SIZE * (FIELD_ROW - TSUMO_FIELD - 1))
       // 窒息地点のマーク
       drawPuyo(3, TSUMO_FIELD + 1, 5, 7, puyoImage);
@@ -1497,7 +1497,7 @@ function Simulater(props) {
         style={{
           display: 'block',
           margin: 'auto',
-          backgroundColor: 'darkgrey'
+          backgroundColor: '#efefef'
         }}
         >
       </canvas>
