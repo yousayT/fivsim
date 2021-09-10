@@ -153,7 +153,7 @@ function CustomTsumo(props) {
       </button>
       <Modal show={showModal} onHide={handleCloseModal} backdrop="static" size="lg" centered>
         <Modal.Header>
-          <Modal.Title>ヘッダー</Modal.Title>
+          <Modal.Title>初手ツモのカスタム</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{
             height: '350px',

@@ -76,7 +76,7 @@ function SelectRensa(props) {
       }
       <Modal show={showModal} onHide={handleCloseModal} backdrop="static" size='lg' centered>
         <Modal.Header>
-          <Modal.Title>ヘッダー</Modal.Title>
+          <Modal.Title>れんさのタネ選択</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <table className="table table-bordered">
