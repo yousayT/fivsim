@@ -309,6 +309,11 @@ function Simulater(props) {
     const YOKOKU_FIELD_X = 1;
     const YOKOKU_FIELD_Y = 18;
 
+    // 連鎖数表示の座標
+    const RENSA_NUM_FIELD_X = 7;
+    const RENSA_NUM_FIELD_Y = 18;
+    const RENSA_NUM_FIELD_WIDTH = 3;
+
     // 現在のツモ
     // x: 軸ぷよのx座標
     // rotStat: 回転の状況（初期位置0から時計回りに0, 1, 2, 3）、でかぷよの時は現在の色のインデックス（0から4まで、赤、緑、青、黄、紫の順）
@@ -431,8 +436,9 @@ function Simulater(props) {
       context.font = "38px sans-serif";
       context.textBaseline = "top";
       context.textAlign = "right";
-      context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, (SCORE_FIELD_X + SCORE_FIELD_WIDTH) * PUYO_SIZE, (SCORE_FIELD_Y + 1) * PUYO_SIZE);
+      context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE, 2.5 * PUYO_SIZE);
       context.fillText(score, (SCORE_FIELD_X + FIELD_COL) * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE);
+      context.clearRect(RENSA_NUM_FIELD_X * PUYO_SIZE, RENSA_NUM_FIELD_Y * PUYO_SIZE, RENSA_NUM_FIELD_WIDTH * PUYO_SIZE, 1.5 * PUYO_SIZE);
     }
 
     // ぷよ1つを描画する
@@ -1257,6 +1263,7 @@ function Simulater(props) {
           context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE, 1.5 *  PUYO_SIZE);
           context.textAlign = "center";
           context.fillStyle = '#38D'
+          context.font = "38px sans-serif";
           context.fillText(erasedPuyoScore + " × " + totalBonus, (SCORE_FIELD_X + FIELD_COL / 2) * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE);
           existingPuyo = [];
           erasingPuyo = [];
@@ -1275,10 +1282,18 @@ function Simulater(props) {
             context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE, 2.5 * PUYO_SIZE);
             context.textAlign = "right"
             context.fillStyle = '#38D'
+            context.font = "38px sans-serif";
             context.fillText(score, (SCORE_FIELD_X + FIELD_COL) * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE);
             let drawingYokoku = calcYokoku(score - beforeScore);
             for(let i = 0; i < drawingYokoku.length; i++) {
               drawPuyo(i + YOKOKU_FIELD_X, YOKOKU_FIELD_Y, drawingYokoku[i], 32, puyoImage);
+            }
+            if(rensaCount) {
+              context.clearRect(RENSA_NUM_FIELD_X * PUYO_SIZE, RENSA_NUM_FIELD_Y * PUYO_SIZE, RENSA_NUM_FIELD_WIDTH * PUYO_SIZE, 2.5 * PUYO_SIZE);
+              context.textAlign = "center"
+              context.fillStyle = 'black'
+              context.font = "24px sans-serif";
+              context.fillText(rensaCount + "連鎖", (RENSA_NUM_FIELD_X + RENSA_NUM_FIELD_WIDTH / 2) * PUYO_SIZE, RENSA_NUM_FIELD_Y * PUYO_SIZE, RENSA_NUM_FIELD_WIDTH * PUYO_SIZE);
             }
             resolve();
           }, 400);
@@ -1380,6 +1395,7 @@ function Simulater(props) {
         context.clearRect(SCORE_FIELD_X * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE, 1.5 * PUYO_SIZE);
         context.textAlign = "right";
         context.fillStyle = '#38D';
+        context.font = "38px sans-serif";
         context.fillText(scoreRecords[tsumoCount], (SCORE_FIELD_X + FIELD_COL) * PUYO_SIZE, SCORE_FIELD_Y * PUYO_SIZE, SCORE_FIELD_WIDTH * PUYO_SIZE);
         score = scoreRecords[tsumoCount];
         beforeScore = scoreRecords[tsumoCount];
