@@ -19,6 +19,8 @@ function CustomTsumo(props) {
       tsumoColors[0] = 'w';
       tsumoColors[1] = 'w';
       tsumoColors[2] = 'w';
+      let buff = tsumoColors[3];
+      tsumoColors[3] = 'w';
       const arrNum = Math.floor(tsumoColors.length / 16 + 1);
       let arr = [];
       for(let i = 0; i < arrNum; i++) {
@@ -39,6 +41,7 @@ function CustomTsumo(props) {
       tsumoColors[0] = 'r';
       tsumoColors[1] = 'g';
       tsumoColors[2] = 'b';
+      tsumoColors[3] = buff;
       return flg;
     }
 
