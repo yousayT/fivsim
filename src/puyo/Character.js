@@ -16,10 +16,19 @@ function Character(props) {
   ))
 
   let description = [];
-  for(let i = 0; i < 16; i++) {
-    description.push(
-      <Description type={CHARA_LIST[props.chara].tsumoPattern[i]} key={i}/>
-    )
+  console.log(props.chara);
+  if(Number(props.chara) === 27) {
+    for(let i = 0; i < 12; i++) {
+      description.push(
+        <Description type={CHARA_LIST[props.chara].tsumoPattern[i]} key={i}/>
+      )
+    }
+  } else {
+    for(let i = 0; i < 16; i++) {
+      description.push(
+        <Description type={CHARA_LIST[props.chara].tsumoPattern[i]} key={i}/>
+      )
+  }
   }
 
 
@@ -35,9 +44,16 @@ function Character(props) {
       <div style={{
         }}>
         ツモパターン：
-        <div className="mx-2">
-          {description}
-        </div>
+        {
+          Number(props.chara) === 27 ?
+            <div className="mx-2">
+              {description}・・・
+            </div>
+          :
+            <div className="mx-2">
+              {description}
+            </div>
+        }
         <div style={{
             width: '100%',
             height: '24px',
