@@ -16,7 +16,6 @@ function Character(props) {
   ))
 
   let description = [];
-  console.log(props.chara);
   if(Number(props.chara) === 27) {
     for(let i = 0; i < 12; i++) {
       description.push(
