@@ -1037,6 +1037,8 @@ function Simulater(props) {
             arr[0][0] = 'w';
             arr[0][1] = 'w';
             arr[0][2] = 'w';
+            let buff = arr[0][3];
+            arr[0][3] = 'w';
             arr.forEach((arr16, index) => {
               const colorCount = {
                 r: 0,
@@ -1085,6 +1087,13 @@ function Simulater(props) {
             tsumoColors[0] = 'r';
             tsumoColors[1] = 'g';
             tsumoColors[2] = 'b';
+            if(buff) {
+              tsumoColors[3] = buff;
+            } else {
+              const colorsArr = ['r', 'b', 'g'];
+              let r = random.genInt(0, 2);
+              tsumoColors[3] = colorsArr[r];
+            }
           }
         }
       }
