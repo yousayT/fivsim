@@ -1037,6 +1037,7 @@ function Simulater(props) {
             arr[0][0] = 'w';
             arr[0][1] = 'w';
             arr[0][2] = 'w';
+            console.log(arr[0][3]);
             let buff = arr[0][3];
             arr[0][3] = 'w';
             arr.forEach((arr16, index) => {
@@ -1087,7 +1088,7 @@ function Simulater(props) {
             tsumoColors[0] = 'r';
             tsumoColors[1] = 'g';
             tsumoColors[2] = 'b';
-            if(buff) {
+            if(buff && buff !== 'w') {
               tsumoColors[3] = buff;
             } else {
               const colorsArr = ['r', 'b', 'g'];
