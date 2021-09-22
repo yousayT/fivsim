@@ -9,7 +9,7 @@ function App() {
     <div>
       <MediaQuery query='(max-width: 767px)'>
         <div className='wrapper'>
-          <h1 className="bg-info text-white px-4">フィバとこぷよツール</h1>
+          <h2 className="bg-info text-white px-4">フィバとこぷよツール</h2>
           <div className='main'>
             <Switch/>
           </div>
