@@ -1466,6 +1466,29 @@ function Simulater(props) {
       }
     }
 
+    const pushButton = (e) => {
+      if(acceptKeyDown){
+        if(e.target.getAttribute('id') === 'leftButton') {
+          leftKey();
+        }
+        if(e.target.getAttribute('id') === 'rightButton') {
+          rightKey();
+        }
+        if(e.target.getAttribute('id') === 'downButton') {
+          downKey();
+        }
+        if(e.target.getAttribute('id') === 'upButton') {
+          upKey();
+        }
+        if(e.target.getAttribute('id') === 'zButton') {
+          zKey();
+        }
+        if(e.target.getAttribute('id') === 'xButton') {
+          xKey();
+        }
+      }
+    }
+
     if(context) {
       puyoImage.onload = () => {
         if(props.start) {
@@ -1520,8 +1543,28 @@ function Simulater(props) {
 
     document.addEventListener('keydown', keyDown);
 
+    const upButton = document.getElementById("upButton");
+    const leftButton = document.getElementById("leftButton");
+    const downButton = document.getElementById("downButton");
+    const rightButton = document.getElementById("rightButton");
+    const zButton = document.getElementById("zButton");
+    const xButton = document.getElementById("xButton");
+
+    upButton.addEventListener('click', pushButton);
+    leftButton.addEventListener('click', pushButton);
+    downButton.addEventListener('click', pushButton);
+    rightButton.addEventListener('click', pushButton);
+    zButton.addEventListener('click', pushButton);
+    xButton.addEventListener('click', pushButton);
+
     return () => {
       document.removeEventListener('keydown', keyDown);
+      upButton.removeEventListener('click', pushButton);
+      leftButton.removeEventListener('click', pushButton);
+      downButton.removeEventListener('click', pushButton);
+      rightButton.removeEventListener('click', pushButton);
+      zButton.removeEventListener('click', pushButton);
+      xButton.removeEventListener('click', pushButton);
     }
 
   }, [context, props.fever, props.start, props.toFirst, props.changeTsumo, props.chara, props.customizedTsumo, props.alertCustom, props.beginning, props.rensaType, props.active])
@@ -1531,14 +1574,62 @@ function Simulater(props) {
       <canvas
         ref={canvasRef}
         width="300"
-        height="610"
+        height="575"
         style={{
           display: 'block',
           margin: 'auto',
+          paddingLeft: '5px',
+          paddingRight: '5px',
           backgroundColor: '#efefef'
         }}
         >
       </canvas>
+      <div style={{
+          width: '310px',
+          paddingBottom: '10px',
+          paddingLeft: '5px',
+          paddingRight: '5px',
+          backgroundColor: '#efefef'
+        }}>
+        <input id="upButton" type="button" value="↑" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginLeft: '57px',
+            marginTop: '2px',
+            marginBottom: '2px'
+          }}/>
+        <br/>
+        <input id="leftButton" type="button" value="←" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginRight: '2px'
+          }}/>
+        <input id="downButton" type="button" value="↓" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginRight: '2px'
+          }}/>
+        <input id="rightButton" type="button" value="→" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginRight: '19px'
+          }}/>
+        <input id="zButton" type="button" value="z" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginRight: '2px'
+          }}/>
+        <input id="xButton" type="button" value="x" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px'
+          }}/>
+      </div>
     </div>
   )
 
