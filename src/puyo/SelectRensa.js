@@ -51,10 +51,10 @@ function SelectRensa(props) {
   for(let i = 0; i < 13; i++) {
     nRensa.push(
       <tr>
-        <td className="tdStyle" key={i} onClick={doSelect} value='kaidan'>{i + 3}</td>
-        <td className="tdStyle" key={i} onClick={doSelect} value='hasamikomi'>{i + 3}</td>
-        <td className="tdStyle" key={i} onClick={doSelect} value='hiradumi'>{i + 3}</td>
-        <td className="tdStyle" key={i} onClick={doSelect} value='zabuton'>{i + 3}</td>
+        <td className="tdStyle" key={0} onClick={doSelect} value='kaidan'>{i + 3}</td>
+        <td className="tdStyle" key={1} onClick={doSelect} value='hasamikomi'>{i + 3}</td>
+        <td className="tdStyle" key={2} onClick={doSelect} value='hiradumi'>{i + 3}</td>
+        <td className="tdStyle" key={3} onClick={doSelect} value='zabuton'>{i + 3}</td>
       </tr>
     )
   }
