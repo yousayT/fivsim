@@ -146,6 +146,22 @@ function CustomFeverTsumo(props) {
     )
   }
 
+  let twoItems = [];
+  for(let i = 0; i < Math.floor(CUSTOM_TSUMO_NUM / 2); i++) {
+    let twoItem = [];
+    for(let j = 0; j < 2; j++) {
+      twoItem.push(
+        <Col key={i * 2 + j}>
+          {items[i * 2 + j]}
+        </Col>
+      )
+    }
+    twoItems.push(
+      <Row key={i}>
+        {twoItem}
+      </Row>
+    )
+  }
 
   return (
     <div>
@@ -168,7 +184,10 @@ function CustomFeverTsumo(props) {
             overflowY: 'auto'
           }}>
           <div className="container">
-            <MediaQuery query='(max-width: 991px)'>
+            <MediaQuery query='(max-width: 400px)'>
+              {twoItems}
+            </MediaQuery>
+            <MediaQuery query='(min-width: 401px) and (max-width: 991px)'>
               {threeItems}
             </MediaQuery>
             <MediaQuery query='(min-width: 992px)'>
