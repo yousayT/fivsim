@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react'
 import {Modal, Row, Col} from 'react-bootstrap'
 import {CHARA_LIST} from './Simulater'
 import TsumoItem from './TsumoItem'
+import MediaQuery from 'react-responsive'
 
 function CustomTsumo(props) {
   // 5の倍数が好ましい
+  // ただしスマホ版は3の倍数になっている
   const CUSTOM_TSUMO_NUM = 20;
 
   let charaIndex = props.chara;
@@ -131,23 +133,46 @@ function CustomTsumo(props) {
       arrayIndex += 2;
     }
   }
-   let fiveItems = [];
-   for(let i = 0; i < CUSTOM_TSUMO_NUM / 5; i++) {
-     let fiveItem = [];
-     for(let j = 0; j < 5; j++) {
-       fiveItem.push(
-         <Col key={i * 5 + j}>
-           {items[i * 5 + j]}
-         </Col>
-       )
-     }
-     fiveItems.push(
-       <Row key={i}>
-         {fiveItem}
-       </Row>
-     )
-   }
+  let fiveItems = [];
+  for(let i = 0; i < CUSTOM_TSUMO_NUM / 5; i++) {
+    let fiveItem = [];
+    for(let j = 0; j < 5; j++) {
+      fiveItem.push(
+        <Col key={i * 5 + j}>
+          {items[i * 5 + j]}
+        </Col>
+      )
+    }
+    fiveItems.push(
+      <Row key={i}>
+        {fiveItem}
+      </Row>
+    )
+  }
 
+  let threeItems = [];
+  for(let i = 0; i < (Math.floor(CUSTOM_TSUMO_NUM / 3) + 1); i++) {
+    let threeItem = [];
+    for(let j = 0; j < 3; j++) {
+      if(i * 3 + j !== CUSTOM_TSUMO_NUM) {
+        threeItem.push(
+          <Col key={i * 3 + j}>
+            {items[i * 3 + j]}
+          </Col>
+        )
+      } else {
+        threeItem.push(
+          <Col key={i * 3 + j}>
+          </Col>
+        )
+      }
+    }
+    threeItems.push(
+      <Row key={i}>
+        {threeItem}
+      </Row>
+    )
+  }
 
   return (
     <div>
@@ -163,7 +188,12 @@ function CustomTsumo(props) {
             overflowY: 'auto'
           }}>
           <div className="container">
-            {fiveItems}
+            <MediaQuery query='(max-width: 991px)'>
+              {threeItems}
+            </MediaQuery>
+            <MediaQuery query='(min-width: 992px)'>
+              {fiveItems}
+            </MediaQuery>
           </div>
         </Modal.Body>
         <Modal.Footer>

@@ -1574,52 +1574,62 @@ function Simulater(props) {
       <canvas
         ref={canvasRef}
         width="300"
-        height="610"
+        height="575"
         style={{
           display: 'block',
           margin: 'auto',
+          paddingLeft: '5px',
+          paddingRight: '5px',
           backgroundColor: '#efefef'
         }}
         >
       </canvas>
-      <input id="upButton" type="button" value="↑" className="btn btn-info" style={{
-          width: '55px',
-          height: '55px',
-          fontSize: '28px',
-          marginLeft: '57px',
-          marginTop: '2px',
-          marginBottom: '2px'
-        }}/>
-      <br/>
-      <input id="leftButton" type="button" value="←" className="btn btn-info" style={{
-          width: '55px',
-          height: '55px',
-          fontSize: '28px',
-          marginRight: '2px'
-        }}/>
-      <input id="downButton" type="button" value="↓" className="btn btn-info" style={{
-          width: '55px',
-          height: '55px',
-          fontSize: '28px',
-          marginRight: '2px'
-        }}/>
-      <input id="rightButton" type="button" value="→" className="btn btn-info" style={{
-          width: '55px',
-          height: '55px',
-          fontSize: '28px',
-          marginRight: '19px'
-        }}/>
-      <input id="zButton" type="button" value="z" className="btn btn-info" style={{
-          width: '55px',
-          height: '55px',
-          fontSize: '28px',
-          marginRight: '2px'
-        }}/>
-      <input id="xButton" type="button" value="x" className="btn btn-info" style={{
-          width: '55px',
-          height: '55px',
-          fontSize: '28px'
-        }}/>
+      <div style={{
+          width: '310px',
+          paddingBottom: '10px',
+          paddingLeft: '5px',
+          paddingRight: '5px',
+          backgroundColor: '#efefef'
+        }}>
+        <input id="upButton" type="button" value="↑" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginLeft: '57px',
+            marginTop: '2px',
+            marginBottom: '2px'
+          }}/>
+        <br/>
+        <input id="leftButton" type="button" value="←" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginRight: '2px'
+          }}/>
+        <input id="downButton" type="button" value="↓" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginRight: '2px'
+          }}/>
+        <input id="rightButton" type="button" value="→" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginRight: '19px'
+          }}/>
+        <input id="zButton" type="button" value="z" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px',
+            marginRight: '2px'
+          }}/>
+        <input id="xButton" type="button" value="x" className="btn btn-info" style={{
+            width: '55px',
+            height: '55px',
+            fontSize: '28px'
+          }}/>
+      </div>
     </div>
   )
 
