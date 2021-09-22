@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Modal} from 'react-bootstrap'
 import './SelectRensa.css'
+import MediaQuery from 'react-responsive'
 
 function SelectRensa(props) {
   const [showModal, setShowModal] = useState(false);
@@ -46,6 +47,18 @@ function SelectRensa(props) {
     )
   }
 
+  let nRensa = [];
+  for(let i = 0; i < 13; i++) {
+    nRensa.push(
+      <tr>
+        <td className="tdStyle" key={i} onClick={doSelect} value='kaidan'>{i + 3}</td>
+        <td className="tdStyle" key={i} onClick={doSelect} value='hasamikomi'>{i + 3}</td>
+        <td className="tdStyle" key={i} onClick={doSelect} value='hiradumi'>{i + 3}</td>
+        <td className="tdStyle" key={i} onClick={doSelect} value='zabuton'>{i + 3}</td>
+      </tr>
+    )
+  }
+
   return (
     <div>
       <button className="btn btn-outline-success my-3" onClick={handleShowModal}>
@@ -81,10 +94,16 @@ function SelectRensa(props) {
         <Modal.Body>
           <table className="table table-bordered">
             <tbody className="text-center">
-              <tr><td style={{backgroundColor: '#d4edda', width: '12.9%'}}>階段</td>{kaidan}</tr>
-              <tr><td style={{backgroundColor: '#d4edda', width: '12.9%'}}>挟み込み</td>{hasamikomi}</tr>
-              <tr><td style={{backgroundColor: '#d4edda', width: '12.9%'}}>平積み</td>{hiradumi}</tr>
-              <tr><td style={{backgroundColor: '#d4edda', width: '12.9%'}}>座布団</td>{zabuton}</tr>
+              <MediaQuery query='(max-width: 991px)'>
+                <tr style={{backgroundColor: '#d4edda', width: '25%'}}><th style={{fontWeight: 'normal'}}>階段</th><th style={{fontWeight: 'normal'}}>挟み込み</th><th style={{fontWeight: 'normal'}}>平積み</th><th style={{fontWeight: 'normal'}}>座布団</th></tr>
+                {nRensa}
+              </MediaQuery>
+              <MediaQuery query='(min-width: 992px)'>
+                <tr><td style={{backgroundColor: '#d4edda', width: '12.9%'}}>階段</td>{kaidan}</tr>
+                <tr><td style={{backgroundColor: '#d4edda', width: '12.9%'}}>挟み込み</td>{hasamikomi}</tr>
+                <tr><td style={{backgroundColor: '#d4edda', width: '12.9%'}}>平積み</td>{hiradumi}</tr>
+                <tr><td style={{backgroundColor: '#d4edda', width: '12.9%'}}>座布団</td>{zabuton}</tr>
+              </MediaQuery>
             </tbody>
           </table>
         </Modal.Body>
