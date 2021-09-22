@@ -31,7 +31,7 @@ function Switch() {
     <div>
       <MediaQuery query='(max-width: 767px)'>
         <div style={{
-            width: '400px',
+            width: '365px',
             margin: 'auto',
             display: 'block'
           }}>
@@ -53,10 +53,10 @@ function Switch() {
             />
           </div>
           <div style={{
-              width: '380px',
+              width: '360px',
               marginTop: '10px',
-              marginLeft: '10px',
-              marginRight: '10px'
+              marginLeft: '2.5px',
+              marginRight: '2.5px'
             }}>
             {
               fever ?
