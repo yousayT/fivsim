@@ -202,7 +202,8 @@ function CustomTsumo(props) {
         </Modal.Header>
         <Modal.Body style={{
             height: '350px',
-            overflowY: 'auto'
+            overflowY: 'auto',
+            overflowX: 'hidden'
           }}>
           <div className="container">
             <MediaQuery query='(max-width: 400px)'>
