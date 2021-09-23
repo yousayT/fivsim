@@ -206,10 +206,10 @@ function CustomTsumo(props) {
             overflowX: 'hidden'
           }}>
           <div className="container">
-            <MediaQuery query='(max-width: 400px)'>
+            <MediaQuery query='(max-width: 430px)'>
               {twoItems}
             </MediaQuery>
-            <MediaQuery query='(min-width: 401px) and (max-width: 991px)'>
+            <MediaQuery query='(min-width: 431px) and (max-width: 991px)'>
               {threeItems}
             </MediaQuery>
             <MediaQuery query='(min-width: 992px)'>
