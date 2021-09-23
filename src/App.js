@@ -8,7 +8,9 @@ function App() {
   return (
     <div>
       <MediaQuery query='(max-width: 767px)'>
-        <div className='wrapper'>
+        <div className='wrapper' style={{
+            overflow: 'hidden'
+          }}>
           <h2 className="bg-info text-white px-4">フィバとこぷよツール</h2>
           <div className='main'>
             <Switch/>
