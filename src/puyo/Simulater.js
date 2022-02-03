@@ -178,6 +178,7 @@ function Simulater(props) {
 
   const canvasRef = useRef(null);
   const [context, setContext] = useState(null);
+  const [drawDestination, setDrawDestination] = useState(true);
 
 
 
@@ -415,6 +416,9 @@ function Simulater(props) {
     // フィーバーモード中に一度でも消したかどうか
     let checkFeverErase = false;
 
+    // ゴーストを表示するかどうか
+    let isDrawDestination = drawDestination;
+
     // 初期化
     const init = () => {
       // フィールドのクリア
@@ -642,7 +646,7 @@ function Simulater(props) {
       drawPuyo(4, TSUMO_FIELD + 1, 5, 7, puyoImage);
 
       // 目的地の描写
-      if(dests.length) {
+      if(dests.length && isDrawDestination) {
         dests.filter(dest => dest.y > 1).forEach(dest => drawPuyo(dest.x + 1, dest.y, PUYO_COLORS.indexOf(dest.color), 5, puyoImage));
       }
       // 消えているぷよの描写
@@ -1439,6 +1443,11 @@ function Simulater(props) {
       rotate(1, tsumo.x, tsumo.type, tsumo.rotStat);
       drawAll();
     }
+    const pKey = () => {
+      isDrawDestination = !isDrawDestination;
+      setDrawDestination(isDraw => !isDraw);
+      drawAll();
+    }
     const keyDown = (e) => {
       if(acceptKeyDown){
         if(e.key === 'ArrowLeft') {
@@ -1463,6 +1472,9 @@ function Simulater(props) {
         if(e.key === 'x') {
           xKey();
         }
+        if(e.key === 'p') {
+          pKey();
+        }
       }
     }
 
@@ -1485,6 +1497,9 @@ function Simulater(props) {
         }
         if(e.target.getAttribute('id') === 'xButton') {
           xKey();
+        }
+        if(e.target.getAttribute('id') === 'onOffButton') {
+          pKey();
         }
       }
     }
@@ -1549,6 +1564,7 @@ function Simulater(props) {
     const rightButton = document.getElementById("rightButton");
     const zButton = document.getElementById("zButton");
     const xButton = document.getElementById("xButton");
+    const onOffButton = document.getElementById("onOffButton");
 
     upButton.addEventListener('click', pushButton);
     leftButton.addEventListener('click', pushButton);
@@ -1556,6 +1572,7 @@ function Simulater(props) {
     rightButton.addEventListener('click', pushButton);
     zButton.addEventListener('click', pushButton);
     xButton.addEventListener('click', pushButton);
+    onOffButton.addEventListener('click', pushButton);
 
     return () => {
       document.removeEventListener('keydown', keyDown);
@@ -1565,25 +1582,38 @@ function Simulater(props) {
       rightButton.removeEventListener('click', pushButton);
       zButton.removeEventListener('click', pushButton);
       xButton.removeEventListener('click', pushButton);
+      onOffButton.removeEventListener('click', pushButton);
     }
 
   }, [context, props.fever, props.start, props.toFirst, props.changeTsumo, props.chara, props.customizedTsumo, props.alertCustom, props.beginning, props.rensaType, props.active])
 
   return(
     <div>
-      <canvas
-        ref={canvasRef}
-        width="300"
-        height="575"
-        style={{
-          display: 'block',
-          margin: 'auto',
-          paddingLeft: '5px',
-          paddingRight: '5px',
-          backgroundColor: '#efefef'
-        }}
-        >
-      </canvas>
+      <div style={{
+          position: 'relative'
+        }}>
+        <canvas
+          ref={canvasRef}
+          width="300"
+          height="575"
+          style={{
+            display: 'block',
+            margin: 'auto',
+            paddingLeft: '5px',
+            paddingRight: '5px',
+            backgroundColor: '#efefef'
+          }}
+          >
+        </canvas>
+        <button id="onOffButton" className="btn btn-info" style={{
+            position: 'absolute',
+            top: '7px',
+            right: '7px',
+            padding: '5px'
+          }}>
+          ゴースト<br/>on/off
+        </button>
+      </div>
       <div style={{
           width: '310px',
           paddingBottom: '10px',

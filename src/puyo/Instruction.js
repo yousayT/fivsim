@@ -28,7 +28,8 @@ function Instruction(props) {
               ↓：ぷよを落下<br/>
               ↑：一手戻る<br/>
               z：左回転<br/>
-              x：右回転<br/><br/>
+              x：右回転<br/>
+              p：ゴーストを表示/非表示<br/><br/>
 
               スタートボタンでとこぷよ開始です。<br/>
               <strong>注意</strong>：キャラやツモカスタムの設定を変えると<br/><strong>盤面がリセットされます。</strong><br/>
