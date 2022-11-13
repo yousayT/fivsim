@@ -11,6 +11,7 @@ import MediaQuery from 'react-responsive'
 
 function Switch() {
   const [fever, setFever] = useState(false);
+  const [imitate, setImitate] = useState(false);
   const [start, setStart] = useState(false);
   const [toFirst, setTofirst] = useState(0);
   const [changeTsumo, setChangeTsumo] = useState(Date.now());
@@ -21,8 +22,23 @@ function Switch() {
   const [active, setActive] = useState(false);
   const [alertCustom, setAlertCustom] = useState(false);
 
-  const doSwitch = () => {
-    setFever(!fever);
+  const doNormal = () => {
+    setFever(false);
+    setImitate(false);
+    setStart(false);
+    setRensaType({});
+  }
+
+  const doFever = () => {
+    setFever(true);
+    setImitate(false);
+    setStart(false);
+    setRensaType({});
+  }
+
+  const doImitate = () => {
+    setImitate(true);
+    setFever(false);
     setStart(false);
     setRensaType({});
   }
@@ -59,18 +75,44 @@ function Switch() {
               marginRight: '2.5px'
             }}>
             {
-              fever ?
+              imitate ?
                 <ul className="nav nav-tabs">
                   <li className="nav-item">
                     <button style={{
                         backgroundColor: 'transparent',
                         color: '#007bff'
-                      }} className="nav-link" onClick={doSwitch}>通常モード</button>
+                      }} className="nav-link" onClick={doNormal}>通常モード</button>
+                  </li>
+                  <li>
+                    <button style={{
+                        backgroundColor: 'transparent',
+                        color: '#007bff'
+                      }} className='nav-link' onClick={doFever}>フィーバーモード</button>
+                  </li>
+                  <li>
+                    <button style={{
+                        backgroundColor: 'transparent'
+                      }} className="nav-link active" disabled>フィバ練習モード</button>
+                  </li>
+                </ul>
+              : fever ?
+                <ul className="nav nav-tabs">
+                  <li className="nav-item">
+                    <button style={{
+                        backgroundColor: 'transparent',
+                        color: '#007bff'
+                      }} className="nav-link" onClick={doNormal}>通常モード</button>
                   </li>
                   <li className="nav-item">
                     <button style={{
                         backgroundColor: 'transparent'
                       }} className="nav-link active" disabled>フィーバーモード</button>
+                  </li>
+                  <li>
+                    <button style={{
+                        backgroundColor: 'transparent',
+                        color: '#007bff'
+                      }} className="nav-link" onClick={doImitate}>フィバ練習モード</button>
                   </li>
                 </ul>
               :
@@ -84,7 +126,13 @@ function Switch() {
                     <button style={{
                         backgroundColor: 'transparent',
                         color: '#007bff'
-                      }} className="nav-link" onClick={doSwitch}>フィーバーモード</button>
+                      }} className="nav-link" onClick={doFever}>フィーバーモード</button>
+                  </li>
+                  <li>
+                    <button style={{
+                        backgroundColor: 'transparent',
+                        color: '#007bff'
+                      }} className="nav-link" onClick={doImitate}>フィバ練習モード</button>
                   </li>
                 </ul>
             }
@@ -159,7 +207,7 @@ function Switch() {
                     <button style={{
                         backgroundColor: 'transparent',
                         color: '#007bff'
-                      }} className="nav-link" onClick={doSwitch}>通常モード</button>
+                      }} className="nav-link" onClick={doFever}>通常モード</button>
                   </li>
                   <li className="nav-item">
                     <button style={{
@@ -178,7 +226,7 @@ function Switch() {
                     <button style={{
                         backgroundColor: 'transparent',
                         color: '#007bff'
-                      }} className="nav-link" onClick={doSwitch}>フィーバーモード</button>
+                      }} className="nav-link" onClick={doFever}>フィーバーモード</button>
                   </li>
                 </ul>
             }
