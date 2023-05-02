@@ -10,7 +10,9 @@ import Instruction from './Instruction'
 import MediaQuery from 'react-responsive'
 
 function Switch() {
+  // フィーバーモード
   const [fever, setFever] = useState(false);
+  // お手本モード
   const [imitate, setImitate] = useState(false);
   const [start, setStart] = useState(false);
   const [toFirst, setTofirst] = useState(0);
@@ -89,11 +91,13 @@ function Switch() {
                         color: '#007bff'
                       }} className='nav-link' onClick={doFever}>フィーバーモード</button>
                   </li>
-                  <li>
-                    <button style={{
-                        backgroundColor: 'transparent'
-                      }} className="nav-link active" disabled>フィバ練習モード</button>
-                  </li>
+                  {/* hotfix-remove_third_menuでコメントアウト
+                    <li>
+                      <button style={{
+                          backgroundColor: 'transparent'
+                        }} className="nav-link active" disabled>フィバ練習モード</button>
+                    </li>
+                  */}
                 </ul>
               : fever ?
                 <ul className="nav nav-tabs">
@@ -108,12 +112,14 @@ function Switch() {
                         backgroundColor: 'transparent'
                       }} className="nav-link active" disabled>フィーバーモード</button>
                   </li>
-                  <li>
-                    <button style={{
-                        backgroundColor: 'transparent',
-                        color: '#007bff'
-                      }} className="nav-link" onClick={doImitate}>フィバ練習モード</button>
-                  </li>
+                  {/* hotfix-remove_third_menuでコメントアウト
+                    <li>
+                      <button style={{
+                          backgroundColor: 'transparent',
+                          color: '#007bff'
+                        }} className="nav-link" onClick={doImitate}>フィバ練習モード</button>
+                    </li>
+                  */}
                 </ul>
               :
                 <ul className="nav nav-tabs">
@@ -128,12 +134,14 @@ function Switch() {
                         color: '#007bff'
                       }} className="nav-link" onClick={doFever}>フィーバーモード</button>
                   </li>
-                  <li>
-                    <button style={{
-                        backgroundColor: 'transparent',
-                        color: '#007bff'
-                      }} className="nav-link" onClick={doImitate}>フィバ練習モード</button>
-                  </li>
+                  {/* hotfix-remove_third_menuでコメントアウト
+                    <li>
+                      <button style={{
+                          backgroundColor: 'transparent',
+                          color: '#007bff'
+                        }} className="nav-link" onClick={doImitate}>フィバ練習モード</button>
+                    </li>
+                  */}
                 </ul>
             }
             <div style={{
@@ -201,19 +209,49 @@ function Switch() {
               marginLeft: '5px'
             }}>
             {
-              fever ?
+              imitate ?
                 <ul className="nav nav-tabs">
                   <li className="nav-item">
                     <button style={{
                         backgroundColor: 'transparent',
                         color: '#007bff'
-                      }} className="nav-link" onClick={doFever}>通常モード</button>
+                      }} className="nav-link" onClick={doNormal}>通常モード</button>
+                  </li>
+                  <li>
+                    <button style={{
+                        backgroundColor: 'transparent',
+                        color: '#007bff'
+                      }} className='nav-link' onClick={doFever}>フィーバーモード</button>
+                  </li>
+                  {/* hotfix-remove_third_menuでコメントアウト
+                    <li>
+                      <button style={{
+                          backgroundColor: 'transparent'
+                        }} className="nav-link active" disabled>フィバ練習モード</button>
+                    </li>
+                  */}
+                </ul>
+              : fever ?
+                <ul className="nav nav-tabs">
+                  <li className="nav-item">
+                    <button style={{
+                        backgroundColor: 'transparent',
+                        color: '#007bff'
+                      }} className="nav-link" onClick={doNormal}>通常モード</button>
                   </li>
                   <li className="nav-item">
                     <button style={{
                         backgroundColor: 'transparent'
                       }} className="nav-link active" disabled>フィーバーモード</button>
                   </li>
+                  {/* hotfix-remove_third_menuでコメントアウト
+                    <li>
+                      <button style={{
+                          backgroundColor: 'transparent',
+                          color: '#007bff'
+                        }} className="nav-link" onClick={doImitate}>フィバ練習モード</button>
+                    </li>
+                  */}
                 </ul>
               :
                 <ul className="nav nav-tabs">
@@ -228,6 +266,14 @@ function Switch() {
                         color: '#007bff'
                       }} className="nav-link" onClick={doFever}>フィーバーモード</button>
                   </li>
+                  {/* hotfix-remove_third_menuでコメントアウト
+                    <li>
+                      <button style={{
+                          backgroundColor: 'transparent',
+                          color: '#007bff'
+                        }} className="nav-link" onClick={doImitate}>フィバ練習モード</button>
+                    </li>
+                  */}
                 </ul>
             }
             <div style={{
