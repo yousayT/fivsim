@@ -12,7 +12,7 @@
     "react-bootstrap": "^2.0.0-beta.5",
     "react-dom": "^17.0.2",
     "react-responsive": "^9.0.0-beta.4",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "react-use": "^17.2.4",
     "web-vitals": "^1.0.1"
   },
@@ -42,6 +42,6 @@
   },
   "engines": {
     "node": "14.x",
-    "npm": "6.x" 
+    "npm": "6.x"
   }
 }
